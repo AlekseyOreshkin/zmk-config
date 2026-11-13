@@ -46,7 +46,7 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp LBKT>, <&kp RBKT>;
+            bindings = <&kp>, <&kp>;
         };
     };
 
