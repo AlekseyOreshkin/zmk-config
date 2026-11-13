@@ -83,7 +83,7 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-                &esc_grv_ht &kp Q   &kp W   &kp E   &kp R   &kp T     &kp Y   &kp U   &kp I     &kp O   &kp P    &kbracket_ht
+                &esc_grv_ht &kp Q   &kp W   &kp E   &kp R   &kp T     &kp Y   &kp U   &kp I     &kp O   &kp P    &bracket_ht
                 &kp TAB     &kp A   &kp S   &kp D   &kp F   &kp G     &kp H   &kp J   &kp K     &kp L   &kp SEMI &kp SQT
                 &kp LSHFT   &kp Z   &kp X   &kp C   &kp V   &kp B     &kp N   &kp M   &kp COMMA &kp DOT &kp FSLH &kp RSHFT
                 &thumb_mod LCTRL LGUI &thumb_layer LOWER LALT &kp SPACE     &kp RET &thumb_layer RAISE LALT &thumb_layer LOWER LCTRL
