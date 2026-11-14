@@ -50,18 +50,32 @@
             bindings = <&kp>, <&kp>;
         };
         
-        duo_td: duo_td {
+        ldtd: l_duo_td {
             compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <2>;
+            #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&mo>, <&kp>;
+            bindings = <&mo LOWER>, <&kp LALT>;
         };
 
-        tri_td: tri_td {
+        lttd: l_tri_td {
             compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <3>;
+            #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&mo>, <&kp>, <&kp>;
+            bindings = <&mo NUMERIC>, <&kp LCTRL>, <&kp LGUI>;
+        };
+        
+        rdtd: r_duo_td {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&mo RAISE>, <&kp RALT>;
+        };
+
+        rttd: r_tri_td {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&mo LOWER>, <&kp RCTRL>, <&kp RGUI>;
         };
     };
 
@@ -90,10 +104,10 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-                &key_ht GRAVE ESC  &kp Q   &kp W   &kp E   &kp R   &kp T     &kp Y   &kp U   &kp I     &kp O   &kp P    &key_ht RBKT LBKT
-                &kp TAB            &kp A   &kp S   &kp D   &kp F   &kp G     &kp H   &kp J   &kp K     &kp L   &kp SEMI &kp SQT
-                &kp LSHFT          &kp Z   &kp X   &kp C   &kp V   &kp B     &kp N   &kp M   &kp COMMA &kp DOT &kp FSLH &kp RSHFT
-                 &tri_td NUMERIC LCTRL LGUI &duo_td LOWER LALT &kp SPACE     &kp RET &duo_td RAISE LALT &tri_td LOWER RCTRL RGUI
+                &key_ht GRAVE ESC  &kp Q   &kp W   &kp E   &kp R   &kp T       &kp Y   &kp U   &kp I     &kp O   &kp P    &key_ht RBKT LBKT
+                &kp TAB            &kp A   &kp S   &kp D   &kp F   &kp G       &kp H   &kp J   &kp K     &kp L   &kp SEMI &kp SQT
+                &kp LSHFT          &kp Z   &kp X   &kp C   &kp V   &kp B       &kp N   &kp M   &kp COMMA &kp DOT &kp FSLH &kp RSHFT
+                                                   &lttd   &ldtd   &kp SPACE   &kp RET &rdtd   &rttd
             >;
         };
 
