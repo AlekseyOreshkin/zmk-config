@@ -53,7 +53,7 @@
             bindings = <
                 HT(GRAVE,ESC) &kp Q       &kp W       &kp E      &kp R   &kp T   &kp Y   &kp U   &kp I     &kp O        &kp P          HT(RBKT,LBKT)
                 &kp TAB       &kp A       &kp S       &kp D      &kp F   &kp G   &kp H   &kp J   &kp K     &kp L        &kp SEMI       &kp SQT
-                &kp LSHFT     HT(Z,LCTRL) HT(X,LALT)  HT(C,LGUI) &kp V   &kp B   &kp N   &kp M   &kp COMMA HT(DOT,LALT) HT(FSLH,LCTRL) &kp RSHFT
+                &kp LSHFT     HT(LCTRL,Z) HT(LALT,X)  HT(LGUI,C) &kp V   &kp B   &kp N   &kp M   &kp COMMA HT(LALT,DOT) HT(LCTRL,FSLH) &kp RSHFT
                                              &mo NUMERIC  &mo LOWER  &kp SPACE   &kp RET &mo RAISE  &kp LGUI
             >;
         };
