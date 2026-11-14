@@ -12,36 +12,10 @@
 #define RAISE 2
 #define NUMERIC 3
 #define ADJUST 4
-#define THUMB_TAPPING_TERM_MS 200
+#define HT(tap, hold) &key_ht tap hold
 
 / {
-    behaviors {
-        // Wait for a non-modifier key before sending the one-shot modifier.
-        thumb_sticky: thumb_sticky {
-            compatible = "zmk,behavior-sticky-key";
-            #binding-cells = <1>;
-            bindings = <&kp>;
-            release-after-ms = <1000>;
-            lazy;
-            ignore-modifiers;
-        };
-
-        thumb_mod: thumb_mod {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            bindings = <&kp>, <&thumb_sticky>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <THUMB_TAPPING_TERM_MS>;
-        };
-
-        thumb_layer: thumb_layer {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            bindings = <&mo>, <&thumb_sticky>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <THUMB_TAPPING_TERM_MS>;
-        };
-        
+    behaviors {        
         key_ht: key_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -50,33 +24,6 @@
             bindings = <&kp>, <&kp>;
         };
         
-        ldtd: l_duo_td {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&mo LOWER>, <&kp LALT>;
-        };
-
-        lttd: l_tri_td {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&mo NUMERIC>, <&kp LCTRL>, <&kp LGUI>;
-        };
-
-        rdtd: r_duo_td {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&mo RAISE>, <&kp RALT>;
-        };
-
-        rttd: r_tri_td {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&mo LOWER>, <&kp RCTRL>, <&kp RGUI>;
-        };
     };
 
     macros {
@@ -104,10 +51,10 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-                &key_ht GRAVE ESC  &kp Q   &kp W   &kp E   &kp R   &kp T       &kp Y   &kp U   &kp I     &kp O   &kp P    &key_ht RBKT LBKT
-                &kp TAB            &kp A   &kp S   &kp D   &kp F   &kp G       &kp H   &kp J   &kp K     &kp L   &kp SEMI &kp SQT
-                &kp LSHFT          &kp Z   &kp X   &kp C   &kp V   &kp B       &kp N   &kp M   &kp COMMA &kp DOT &kp FSLH &kp RSHFT
-                                      &mo NUMERIC   &mo LOWER  &kp SPACE       &kp RET &mo RAISE   &kp LGUI
+                HT(GRAVE,ESC) &kp Q       &kp W       &kp E      &kp R   &kp T   &kp Y   &kp U   &kp I     +&kp O        &kp P          HT(RBKT,LBKT)
+                &kp TAB       &kp A       &kp S       &kp D      &kp F   &kp G   &kp H   &kp J   &kp K     &kp L        &kp SEMI       &kp SQT
+                &kp LSHFT     HT(Z,LCTRL) HT(X,LALT)  HT(C,LGUI) &kp V   &kp B   &kp N   &kp M   &kp COMMA HT(DOT,LALT) HT(FSLH,LCTRL) &kp RSHFT
+                                             &mo NUMERIC  &mo LOWER  &kp SPACE   &kp RET &mo RAISE  &kp LGUI
             >;
         };
 
@@ -117,7 +64,7 @@
                 &kp GRAVE &kp N1    &kp N2    &kp N3    &kp N4   &kp N5      &kp N6    &kp N7   &kp N8    &kp N9    &kp N0   &trans
                 &kp CAPS  &kp EXCL  &kp AT    &kp HASH  &kp DLLR &kp PRCNT   &kp CARET &kp AMPS &kp ASTRK &kp LPAR  &kp RPAR &kp PIPE
                 &trans    &kp EQUAL &kp MINUS &kp PLUS  &kp LBRC &kp RBRC    &kp LBKT  &kp RBKT &cpp_arrow &kp UNDER &kp BSLH &trans
-                                              &kp LCTRL &trans   &trans      &trans    &trans   &kp RCTRL
+                                              &kp LCTRL &trans   &trans      &trans    &trans   &kp LCTRL
             >;
         };
 
@@ -127,7 +74,7 @@
                 &kp F1    &kp F2    &kp F3    &kp F4    &kp F5   &kp F6      &kp F7    &kp F8   &kp F9    &kp F10   &kp F11  &kp F12
                 &kp GRAVE &kp N1    &kp N2    &kp N3    &kp N4   &kp N5      &kp N6    &kp N7   &kp N8    &kp N9    &kp N0   &kp BSPC
                 &trans    &kp EXCL  &kp AT    &kp HASH  &kp DLLR &kp PRCNT   &kp CARET &kp AMPS &kp ASTRK &kp LPAR  &kp RPAR &trans
-                                              &kp LCTRL &kp LALT   &trans    &trans    &trans   &kp RCTRL
+                                              &kp LCTRL &kp LALT   &trans    &trans    &trans   &kp LCTRL
             >;
         };
 
@@ -137,7 +84,7 @@
                 &kp KP_NUM   &kp KP_SLASH  &kp KP_ASTERISK &kp KP_N7 &kp KP_N8 &kp KP_N9    &kp INS   &none     &none    &kp PSCRN &kp SLCK  &kp PAUSE_BREAK
                 &kp KP_ENTER &kp KP_MINUS  &kp KP_PLUS     &kp KP_N4 &kp KP_N5 &kp KP_N6    &kp BSPC  &kp PG_UP &kp UP   &kp PG_DN  &kp HOME &kp BSPC
                 &trans       &kp KP_DOT    &kp KP_N0       &kp KP_N1 &kp KP_N2 &kp KP_N3    &kp DEL   &kp LEFT  &kp DOWN &kp RIGHT  &kp END  &trans
-                                                           &trans    &kp LALT    &trans     &trans    &kp RALT  &kp RCTRL
+                                                           &trans    &kp LALT    &trans     &trans    &kp LALT  &kp LCTRL
             >;
         };
 
